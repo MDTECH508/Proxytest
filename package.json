@@ -1,0 +1,12 @@
+{
+  "name": "fake-tech-proxy",
+  "version": "1.0.0",
+  "description": "Sèvè Proxy ak Enjeksyon pou FakeXsensiV1",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "http-proxy": "^1.18.1"
+  }
+}
