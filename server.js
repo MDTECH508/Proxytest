@@ -7,7 +7,7 @@ const proxy = httpProxy.createProxyServer({});
 // Pò otomatik Render
 const PORT = process.env.PORT || 9999; 
 
-// N AP SÈVI AK CLOUDFLARE KOUYÈ A POU L KA PI RAPID NÈT ENERGETIKMAN ⚡
+// N ap sèvi ak Cloudflare pou vitès bypass la ultra-rapid
 const TARGET_DNS = 'https://1.1.1.1';
 
 // 2. PATI POU INJECTION AN
@@ -16,30 +16,35 @@ proxy.on('proxyReq', function(proxyReq, req, res, options) {
     proxyReq.setHeader('X-Developer', 'FAKE TECH DEVIL INJECT');
     proxyReq.setHeader('X-Power-Status', 'FAKE TECH IN');
     proxyReq.setHeader('X-Custom-Auth', 'FakeXsensiV1-Authorized');
-    
-    console.log(`[ULTRA-FAST] Trafik optimize sou Cloudflare Engine!`);
 });
 
 // 3. Sèvè HTTP Proxy
 const server = http.createServer(function(req, res) {
-    // Règleman CORS pou Vercel
+    // Règleman CORS konplè pou pèmèt Vercel li PING lan san restriksyon
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With');
 
-    // A. TRAFIK IPHONE POU JWÈT LA (Bypass ultra-rapide)
+    // Reponn byen rapid si navigatè a fè yon demann "OPTIONS" (Pre-flight CORS)
+    if (req.method === 'OPTIONS') {
+        res.writeHead(200);
+        return res.end();
+    }
+
+    // A. TRAFIK IPHONE POU JWÈT LA (/dns-query)
     if (req.url.startsWith('/dns-query')) {
         proxy.web(req, res, { target: TARGET_DNS, changeOrigin: true });
         return;
     }
     
-    // B. ROUTE STATUS POU PANEL VERCEL
-    if (req.url === '/status') {
+    // B. ROUTE STATUS AJUSTE POU PING AN TAN REYÈL CHAK SEGOND
+    // Nou itilize .startsWith paske URL la ap gen "?t=1234567..." anndan l
+    if (req.url.startsWith('/status')) {
         res.writeHead(200, { 'Content-Type': 'application/json' });
         return res.end(JSON.stringify({ status: "online", msg: "POWERED BY FAKE TECH SENSI V1" }));
     }
 
-    // C. NEW STYLE EKRAN AKÈY SIT LA (Chanjman Tèks ak Lumyè Neon)
+    // C. EKRAN AKÈY SIT LA AVÈK NEW STYLE LAN
     if (req.url === '/' || req.url === '') {
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
         return res.end(`
@@ -98,7 +103,7 @@ const server = http.createServer(function(req, res) {
         `);
     }
 
-    proxy.web(req, res, { target: TARGET_DNS, changeOrigin: true });
+    proxy.web(req, res, { target: TARGET_SERVER, changeOrigin: true });
 });
 
 // 4. Limen sèvè a
