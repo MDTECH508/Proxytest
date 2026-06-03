@@ -3,160 +3,333 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FakeXsensiV1 - Admin Dashboard</title>
+    <title>FakeXsensiV1 - Hyper Dashboard</title>
     <style>
         :root {
-            --bg-color: #0a0a12;
-            --panel-bg: rgba(20, 20, 35, 0.6);
+            --bg-image: url('/* METE LINK IMAJ OU AN LA */'); /* Kole lyen imaj ou an la taye */
             --neon-cyan: #00f0ff;
             --neon-pink: #ff0055;
-            --text-color: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --glass-blur: blur(14px);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #06060c var(--bg-image) no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
             margin: 0;
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-image: radial-gradient(circle at 50% 50%, #1a153a 0%, #0a0a12 100%);
             min-height: 100vh;
-        }
-
-        h1 {
-            color: var(--neon-cyan);
-            text-shadow: 0 0 10px var(--neon-cyan);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 800px;
-            background: var(--panel-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--neon-cyan);
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
             box-sizing: border-box;
         }
 
-        .form-group {
-            margin-bottom: 20px;
+        h1 {
+            color: #ffffff;
+            text-shadow: 0 0 15px var(--neon-cyan), 0 0 30px var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 26px;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        /* SLIDER K AP CHANJE TÈKS CHAK SEGOND */
+        .text-slider-container {
+            height: 25px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .text-slider {
             display: flex;
-            gap: 15px;
-            align-items: center;
+            flex-direction: column;
+            animation: slideText 4s infinite cubic-bezier(0.65, 0, 0.35, 1);
         }
 
-        label {
+        .text-slide {
             font-weight: bold;
-            color: var(--neon-cyan);
+            font-size: 15px;
+            letter-spacing: 1px;
+            height: 25px;
+            line-height: 25px;
         }
 
-        select {
-            background: #121225;
-            color: #fff;
-            border: 1px solid var(--neon-cyan);
-            padding: 10px;
-            border-radius: 6px;
-            outline: none;
-            cursor: pointer;
+        @keyframes slideText {
+            0%, 20% { transform: translateY(0); color: var(--neon-cyan); }
+            25%, 45% { transform: translateY(-25px); color: var(--neon-pink); }
+            50%, 70% { transform: translateY(-50px); color: #00ff66; }
+            75%, 95% { transform: translateY(-75px); color: #ffbb00; }
+            100% { transform: translateY(0); }
         }
 
-        button {
-            background: transparent;
-            color: var(--neon-cyan);
-            border: 1px solid var(--neon-cyan);
-            padding: 10px 20px;
-            font-weight: bold;
-            text-transform: uppercase;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 5px rgba(0, 240, 255, 0.3);
-        }
-
-        button:hover {
-            background: var(--neon-cyan);
-            color: #000;
-            box-shadow: 0 0 15px var(--neon-cyan);
-        }
-
-        table {
+        /* EFFÈ GLASSMORPHISM AK LIP GLASS LIP */
+        .container {
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 25px;
+            max-width: 500px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), 
+                        inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
         }
 
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
-        }
-
-        th {
-            color: var(--neon-cyan);
+        /* KATEGORI POU KONTWÒL LA */
+        .category-title {
+            font-size: 13px;
             text-transform: uppercase;
-            font-size: 14px;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.5);
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
 
-        .status-online {
+        .control-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .control-label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* SUPER SLIDE SWITCH (ON / OFF BUTTON) */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 65px;
+            height: 34px;
+        }
+
+        .switch input { 
+            opacity: 0; width: 0; height: 0; 
+        }
+
+        .slider-btn {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            transition: .4s;
+            border-radius: 34px;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .slider-btn:before {
+            position: absolute;
+            content: "";
+            height: 24px;
+            width: 24px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        input:checked + .slider-btn {
+            background-color: rgba(0, 240, 255, 0.2);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+
+        input:checked + .slider-btn:before {
+            transform: translateX(31px);
+            background-color: var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        /* AN TAN REYÈL LOG PANEL */
+        .live-status-box {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--neon-pink);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .pulse-active {
+            background-color: #00ff66 !important;
+            animation: pulseGlow 1.5s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.7); }
+            70% { box-shadow: 0 0 0 8px rgba(0, 255, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
+        }
+
+        /* KÒTÈ PING LAN AP AFICHE */
+        .ping-display {
+            font-size: 20px;
+            font-weight: bold;
+            font-family: monospace;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+
+        .log-text {
+            font-family: monospace;
+            font-size: 13px;
             color: #00ff66;
-            text-shadow: 0 0 5px #00ff66;
-            font-weight: bold;
-        }
-
-        .status-offline {
-            color: var(--neon-pink);
-            text-shadow: 0 0 5px var(--neon-pink);
-            font-weight: bold;
+            margin: 5px 0;
         }
     </style>
 </head>
 <body>
 
-    <h1>FakeXsensiV1 - Panel Admin</h1>
-
-    <div class="container">
-        <div class="form-group">
-            <button onclick="checkServerStatus()">Tcheke Sèvè Proxy</button>
-            <span id="serverStatus" class="status-offline">POKO VERIFYE</span>
-        </div>
-
-        <div style="margin-top: 20px; border-top: 1px solid rgba(0, 240, 255, 0.2); padding-top: 20px;">
-            <p><strong>Sistèm Enjeksyon:</strong> <span style="color: var(--neon-cyan);">AKTIF (Pò 9999/Render Bypass)</span></p>
-            <p><strong>Mesaj ki Enjekte:</strong> <span style="color: #00ff66;">FAKE TECH DEVIL INJECT</span></p>
+    <h1>FAKE TECH SENSI V1</h1>
+    
+    <div class="text-slider-container">
+        <div class="text-slider">
+            <div class="text-slide">HEAD DNS 100!@ SAFE SECURE</div>
+            <div class="text-slide">BYPASS OVERRIDE ACTIVE</div>
+            <div class="text-slide">CLOUDFLARE ENGINE ONLINE</div>
+            <div class="text-slide">POWERED BY FAKE TECH</div>
         </div>
     </div>
 
-    <script>
-        // ⚠️ ENPÒTAN: Ranplase lyen sa a ak lyen Render pa w la lè l fin Live
-        const API_URL = "https://proxytest-qm84.onrender.com/"; 
+    <div class="container">
+        
+        <div class="category-title">SYSTEM INJECTION CONTROLS</div>
+        
+        <div class="control-row">
+            <span class="control-label" id="switchLabel">BYPASS ENGINE STATUS</span>
+            <label class="switch">
+                <input type="checkbox" id="bypassSwitch" onchange="toggleEngine()">
+                <span class="slider-btn"></span>
+            </label>
+        </div>
 
-        async function checkServerStatus() {
-            const statusLabel = document.getElementById('serverStatus');
-            statusLabel.innerText = "N AP VERIFYE...";
-            statusLabel.className = "";
+        <div class="live-status-box">
+            <div class="status-header">
+                <span style="color: rgba(255,255,255,0.6)">SÈVÈ LIVE LOGS:</span>
+                <div>
+                    <span id="pulse" class="pulse-dot"></span>
+                    <span id="liveStatusText" style="font-weight: bold; margin-left: 5px; color: var(--neon-pink);">OFFLINE</span>
+                </div>
+            </div>
             
+            <div style="margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px;">
+                <span style="font-size: 11px; color: #888; text-transform: uppercase;">Realtime Ping Rate:</span>
+                <div id="pingValue" class="ping-display" style="color: #666;">-- ms</div>
+            </div>
+
+            <div id="logConsole">
+                <p class="log-text" style="color: #aaa;">[Sistèm nan pare. Limen switch la pou kalkile ping...]</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Kole lyen Render pa w la egzakteman la a
+        const API_URL = "https://proxytest-qm84.onrender.com"; 
+        let intervalId = null;
+
+        function toggleEngine() {
+            const isChecked = document.getElementById('bypassSwitch').checked;
+            const logConsole = document.getElementById('logConsole');
+            const pulse = document.getElementById('pulse');
+            const statusText = document.getElementById('liveStatusText');
+            const pingValue = document.getElementById('pingValue');
+
+            if (isChecked) {
+                logConsole.innerHTML = `<p class="log-text" style="color: #00f0ff;">[+] N ap kalkile ms sèvè a chak segond...</p>`;
+                // Kouri tcheke li chak 1 segond (1000 milisegond) nèt pou ping lan chanje an tan reyèl
+                checkServerLive();
+                intervalId = setInterval(checkServerLive, 1000);
+            } else {
+                clearInterval(intervalId);
+                logConsole.innerHTML = `<p class="log-text" style="color: var(--neon-pink);">[-] Sistèm Enjeksyon Desaktive.</p>`;
+                pulse.className = "pulse-dot";
+                statusText.innerText = "OFFLINE";
+                statusText.style.color = "var(--neon-pink)";
+                pingValue.innerText = "-- ms";
+                pingValue.style.color = "#666";
+            }
+        }
+
+        async function checkServerLive() {
+            const logConsole = document.getElementById('logConsole');
+            const pulse = document.getElementById('pulse');
+            const statusText = document.getElementById('liveStatusText');
+            const pingValue = document.getElementById('pingValue');
+
+            // Pran tan anvan nou voye demann lan
+            const startTime = performance.now();
+
             try {
-                const response = await fetch(`${API_URL}/status`);
+                // Ajoute yon ti timestamp sekrè nan url la pou evite kach (cache) navigatè a epi gen vrè ping lan
+                const response = await fetch(`${API_URL}/status?t=${Date.now()}`);
                 const data = await response.json();
                 
+                // Pran tan kounye a demann lan fin reponn
+                const endTime = performance.now();
+                // Kalkile diferans la pou jwenn milisegond yo (ms)
+                const ping = Math.round(endTime - startTime);
+
                 if (data.status === "online") {
-                    statusLabel.innerText = "ONLINE (FAKE TECH IN)";
-                    statusLabel.className = "status-online";
-                } else {
-                    statusLabel.innerText = "OFFLINE";
-                    statusLabel.className = "status-offline";
+                    pulse.className = "pulse-dot pulse-active";
+                    statusText.innerText = "ONLINE";
+                    statusText.style.color = "#00ff66";
+                    
+                    // Afiche ms lan epi chanje koulè l jan sa ye nan Free Fire
+                    pingValue.innerText = `${ping} ms`;
+                    if (ping < 80) {
+                        pingValue.style.color = "#00ff66"; // Vèt si l rapid (bon ping)
+                    } else if (ping < 180) {
+                        pingValue.style.color = "#ffbb00"; // Jòn si l kòmanse monte
+                    } else {
+                        pingValue.style.color = "var(--neon-pink)"; // Wouj/Roz flash si l wo
+                    }
+                    
+                    logConsole.innerHTML = `
+                        <p class="log-text">✔ ${data.msg}</p>
+                        <p class="log-text" style="color: #00f0ff;">⚡ ENGINE: CLOUDFLARE BYPASS 100%</p>
+                    `;
                 }
             } catch (error) {
-                statusLabel.innerText = "OFFLINE (ERÈ KONEKSYON)";
-                statusLabel.className = "status-offline";
+                pulse.className = "pulse-dot";
+                statusText.innerText = "SÈVÈ DÒMI";
+                statusText.style.color = "#ffbb00";
+                pingValue.innerText = "999+ ms";
+                pingValue.style.color = "var(--neon-pink)";
+                logConsole.innerHTML = `<p class="log-text" style="color: #ffbb00;">[!] Sèvè a ap leve, tann 30s...</p>`;
             }
         }
     </script>
