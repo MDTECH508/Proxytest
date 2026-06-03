@@ -42,7 +42,7 @@
         .text-slider-container {
             height: 25px;
             overflow: hidden;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             text-align: center;
         }
 
@@ -68,59 +68,96 @@
             100% { transform: translateY(0); }
         }
 
-        /* EFFÈ GLASSMORPHISM AK LIP GLASS LIP */
+        /* EFFÈ GLASSMORPHISM AK LIP GLASS */
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 550px;
             background: var(--glass-bg);
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
-            padding: 30px;
+            padding: 25px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), 
                         inset 0 1px 1px rgba(255, 255, 255, 0.2);
             box-sizing: border-box;
-            position: relative;
-            overflow: hidden;
         }
 
-        /* KATEGORI POU KONTWÒL LA */
         .category-title {
             font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.6);
             border-bottom: 1px solid var(--glass-border);
             padding-bottom: 8px;
             margin-bottom: 20px;
             font-weight: 600;
         }
 
+        /* BOUTON CHWAZI CLOUD OUBYEN VPN (TABS) */
+        .tab-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 12px;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .tab-btn.active {
+            background: rgba(0, 240, 255, 0.15);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+            color: var(--neon-cyan);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* KÒTÈ KONTWÒL AK SWITCH LA */
         .control-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 12px 15px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .control-label {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
-            color: #fff;
+            transition: color 0.3s ease;
         }
 
-        /* SUPER SLIDE SWITCH (ON / OFF BUTTON) */
+        /* SUPER SLIDE SWITCH (ON / OFF) */
         .switch {
             position: relative;
             display: inline-block;
             width: 65px;
-            height: 34px;
+            height: 32px;
         }
 
-        .switch input { 
-            opacity: 0; width: 0; height: 0; 
-        }
+        .switch input { opacity: 0; width: 0; height: 0; }
 
         .slider-btn {
             position: absolute;
@@ -130,7 +167,6 @@
             border: 1px solid var(--glass-border);
             transition: .4s;
             border-radius: 34px;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
         }
 
         .slider-btn:before {
@@ -138,12 +174,12 @@
             content: "";
             height: 24px;
             width: 24px;
-            left: 4px;
-            bottom: 4px;
+            left: 3px;
+            bottom: 3px;
             background-color: white;
             transition: .4s;
             border-radius: 50%;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
         input:checked + .slider-btn {
@@ -153,7 +189,7 @@
         }
 
         input:checked + .slider-btn:before {
-            transform: translateX(31px);
+            transform: translateX(33px);
             background-color: var(--neon-cyan);
             box-shadow: 0 0 10px var(--neon-cyan);
         }
@@ -161,9 +197,10 @@
         /* AN TAN REYÈL LOG PANEL */
         .live-status-box {
             background: rgba(0, 0, 0, 0.4);
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 15px;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 20px;
         }
 
         .status-header {
@@ -171,7 +208,6 @@
             justify-content: space-between;
             align-items: center;
             font-size: 13px;
-            margin-bottom: 10px;
         }
 
         .pulse-dot {
@@ -193,18 +229,46 @@
             100% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
         }
 
-        /* KÒTÈ PING LAN AP AFICHE */
         .ping-display {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
             font-family: monospace;
             margin-top: 5px;
-            letter-spacing: 1px;
+        }
+
+        /* TUTORYAL STYLE */
+        .tutorial-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+
+        .tutorial-box ol {
+            margin: 0;
+            padding-left: 20px;
+            color: #ddd;
+        }
+
+        .tutorial-box li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            color: var(--neon-cyan);
+            font-weight: bold;
+        }
+        
+        .highlight-pink {
+            color: var(--neon-pink);
+            font-weight: bold;
         }
 
         .log-text {
             font-family: monospace;
-            font-size: 13px;
+            font-size: 12.5px;
             color: #00ff66;
             margin: 5px 0;
         }
@@ -225,82 +289,167 @@
 
     <div class="container">
         
-        <div class="category-title">SYSTEM INJECTION CONTROLS</div>
+        <div class="category-title">CHWAZI METÒD KONEKSYON OU</div>
         
-        <div class="control-row">
-            <span class="control-label" id="switchLabel">BYPASS ENGINE STATUS</span>
-            <label class="switch">
-                <input type="checkbox" id="bypassSwitch" onchange="toggleEngine()">
-                <span class="slider-btn"></span>
-            </label>
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="switchTab('cloud')">☁ CLOUD METÒD</button>
+            <button class="tab-btn" onclick="switchTab('vpn')">🛡 VPN / PROXY METÒD</button>
         </div>
 
-        <div class="live-status-box">
-            <div class="status-header">
-                <span style="color: rgba(255,255,255,0.6)">SÈVÈ LIVE LOGS:</span>
-                <div>
-                    <span id="pulse" class="pulse-dot"></span>
-                    <span id="liveStatusText" style="font-weight: bold; margin-left: 5px; color: var(--neon-pink);">OFFLINE</span>
-                </div>
-            </div>
-            
-            <div style="margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px;">
-                <span style="font-size: 11px; color: #888; text-transform: uppercase;">Realtime Ping Rate:</span>
-                <div id="pingValue" class="ping-display" style="color: #666;">-- ms</div>
+        <div id="cloudContent" class="tab-content active">
+            <div class="control-row">
+                <span class="control-label" id="cloudLabel" style="color: var(--neon-pink);">STATUS: OFF</span>
+                <label class="switch">
+                    <input type="checkbox" id="cloudSwitch" onchange="toggleEngine('cloud')">
+                    <span class="slider-btn"></span>
+                </label>
             </div>
 
-            <div id="logConsole">
-                <p class="log-text" style="color: #aaa;">[Sistèm nan pare. Limen switch la pou kalkile ping...]</p>
+            <div class="live-status-box">
+                <div class="status-header">
+                    <span style="color: rgba(255,255,255,0.6)">SÈVÈ LIVE MS RATE:</span>
+                    <div>
+                        <span id="cloudPulse" class="pulse-dot"></span>
+                        <span id="cloudStatusText" style="font-weight: bold; margin-left: 5px; color: var(--neon-pink);">OFFLINE</span>
+                    </div>
+                </div>
+                <div id="cloudPing" class="ping-display" style="color: #666; margin-bottom:10px;">-- ms</div>
+                <div id="cloudConsole">
+                    <p class="log-text" style="color: #aaa;">[Limen switch anlè a pou wè vitès sèvè a...]</p>
+                </div>
+            </div>
+
+            <div class="tutorial-box">
+                <p style="margin-top:0; font-weight:bold; color:var(--neon-cyan);">📖 TUTORYAL CLOUD (MOBILECONFIG):</p>
+                <ol>
+                    <li>Telechaje fichye <span class="highlight">FakeXsensiV1.mobileconfig</span> lan sou iPhone ou.</li>
+                    <li>Ale nan <span class="highlight">Settings > Profile Downloaded</span>, epi klike sou <b>Install</b>.</li>
+                    <li>Ale nan <span class="highlight">Settings > General > About > Certificate Trust Settings</span> epi vire bouton sètifika a sou vèt.</li>
+                    <li><span class="highlight-pink">Remak:</span> Si Free Fire bay "No Internet", pase nan metòd VPN lan ki anlè a pito!</li>
+                </ol>
+            </div>
+        </div>
+
+        <div id="vpnContent" class="tab-content">
+            <div class="control-row">
+                <span class="control-label" id="vpnLabel" style="color: var(--neon-pink);">STATUS: OFF</span>
+                <label class="switch">
+                    <input type="checkbox" id="vpnSwitch" onchange="toggleEngine('vpn')">
+                    <span class="slider-btn"></span>
+                </label>
+            </div>
+
+            <div class="live-status-box">
+                <div class="status-header">
+                    <span style="color: rgba(255,255,255,0.6)">VPN SYNC SPEED:</span>
+                    <div>
+                        <span id="vpnPulse" class="pulse-dot"></span>
+                        <span id="vpnStatusText" style="font-weight: bold; margin-left: 5px; color: var(--neon-pink);">OFFLINE</span>
+                    </div>
+                </div>
+                <div id="vpnPing" class="ping-display" style="color: #666; margin-bottom:10px;">-- ms</div>
+                <div id="vpnConsole">
+                    <p class="log-text" style="color: #aaa;">[Limen switch la pou konekte API VPN lan...]</p>
+                </div>
+            </div>
+
+            <div class="tutorial-box">
+                <p style="margin-top:0; font-weight:bold; color:var(--neon-pink);">📖 TUTORYAL VPN GAMING (USA):</p>
+                <ol>
+                    <li>Telechaje aplikasyon <span class="highlight">ProxyPin</span> oswa <span class="highlight">NapsternetV</span> sou App Store iPhone ou.</li>
+                    <li>Louvri aplikasyon an, ale nan seksyon <b>Outbound Proxy / SOCKS5</b>.</li>
+                    <li>Ranpli kaz yo ak sèvè Gaming Ozetazini sa a:<br>
+                        • <b>Host/IP:</b> <span class="highlight">104.238.134.11</span><br>
+                        • <b>Port:</b> <span class="highlight">1080</span>
+                    </li>
+                    <li>Limen gwo switch la nan aplikasyon an pou kòmanse tinèl la.</li>
+                    <li>Louvri Free Fire. Jwèt la ap mache byen rapid san okenn bloke "No Internet"!</li>
+                </ol>
             </div>
         </div>
 
     </div>
 
     <script>
-        // Kole lyen Render pa w la egzakteman la a
         const API_URL = "https://proxytest-qm84.onrender.com"; 
         let intervalId = null;
 
-        function toggleEngine() {
-            const isChecked = document.getElementById('bypassSwitch').checked;
-            const logConsole = document.getElementById('logConsole');
-            const pulse = document.getElementById('pulse');
-            const statusText = document.getElementById('liveStatusText');
-            const pingValue = document.getElementById('pingValue');
+        function switchTab(method) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            clearInterval(intervalId);
+            resetAllEngines();
 
-            if (isChecked) {
-                logConsole.innerHTML = `<p class="log-text" style="color: #00f0ff;">[+] N ap kalkile ms sèvè a chak segond...</p>`;
-                // Kouri tcheke li chak 1 segond (1000 milisegond) nèt pou ping lan chanje an tan reyèl
-                checkServerLive();
-                intervalId = setInterval(checkServerLive, 1000);
+            if (method === 'cloud') {
+                document.querySelector('[onclick="switchTab(\'cloud\')"]').classList.add('active');
+                document.getElementById('cloudContent').classList.add('active');
             } else {
-                clearInterval(intervalId);
-                logConsole.innerHTML = `<p class="log-text" style="color: var(--neon-pink);">[-] Sistèm Enjeksyon Desaktive.</p>`;
-                pulse.className = "pulse-dot";
-                statusText.innerText = "OFFLINE";
-                statusText.style.color = "var(--neon-pink)";
-                pingValue.innerText = "-- ms";
-                pingValue.style.color = "#666";
+                document.querySelector('[onclick="switchTab(\'vpn\')"]').classList.add('active');
+                document.getElementById('vpnContent').classList.add('active');
             }
         }
 
-        async function checkServerLive() {
-            const logConsole = document.getElementById('logConsole');
-            const pulse = document.getElementById('pulse');
-            const statusText = document.getElementById('liveStatusText');
-            const pingValue = document.getElementById('pingValue');
+        function resetAllEngines() {
+            document.getElementById('cloudSwitch').checked = false;
+            document.getElementById('vpnSwitch').checked = false;
+            
+            document.getElementById('cloudPing').innerText = "-- ms";
+            document.getElementById('vpnPing').innerText = "-- ms";
+            document.getElementById('cloudPing').style.color = "#666";
+            document.getElementById('vpnPing').style.color = "#666";
+            
+            document.getElementById('cloudStatusText').innerText = "OFFLINE";
+            document.getElementById('vpnStatusText').innerText = "OFFLINE";
+            
+            document.getElementById('cloudPulse').className = "pulse-dot";
+            document.getElementById('vpnPulse').className = "pulse-dot";
+            
+            // Reyisyalize Label ON/OFF yo tou
+            const cLabel = document.getElementById('cloudLabel');
+            cLabel.innerText = "STATUS: OFF";
+            cLabel.style.color = "var(--neon-pink)";
+            
+            const vLabel = document.getElementById('vpnLabel');
+            vLabel.innerText = "STATUS: OFF";
+            vLabel.style.color = "var(--neon-pink)";
 
-            // Pran tan anvan nou voye demann lan
+            document.getElementById('cloudConsole').innerHTML = `<p class="log-text" style="color: #aaa;">[Limen switch anlè a pou wè vitès sèvè a...]</p>`;
+            document.getElementById('vpnConsole').innerHTML = `<p class="log-text" style="color: #aaa;">[Limen switch la pou konekte API VPN lan...]</p>`;
+        }
+
+        function toggleEngine(type) {
+            const isChecked = document.getElementById(`${type}Switch`).checked;
+            const logConsole = document.getElementById(`${type}Console`);
+            const label = document.getElementById(`${type}Label`);
+
+            if (isChecked) {
+                // Lè l limen: li chanje an "AN APÈL" ak bèl koulè cyan
+                label.innerText = "STATUS: AN APÈL";
+                label.style.color = "var(--neon-cyan)";
+                
+                logConsole.innerHTML = `<p class="log-text" style="color: #00f0ff;">[+] N ap kalkile ms an tan reyèl chak segond...</p>`;
+                checkServerLive(type);
+                intervalId = setInterval(() => checkServerLive(type), 1000);
+            } else {
+                clearInterval(intervalId);
+                resetAllEngines();
+            }
+        }
+
+        async function checkServerLive(type) {
+            const logConsole = document.getElementById(`${type}Console`);
+            const pulse = document.getElementById(`${type}Pulse`);
+            const statusText = document.getElementById(`${type}StatusText`);
+            const pingValue = document.getElementById(`${type}Ping`);
+
             const startTime = performance.now();
 
             try {
-                // Ajoute yon ti timestamp sekrè nan url la pou evite kach (cache) navigatè a epi gen vrè ping lan
                 const response = await fetch(`${API_URL}/status?t=${Date.now()}`);
                 const data = await response.json();
                 
-                // Pran tan kounye a demann lan fin reponn
                 const endTime = performance.now();
-                // Kalkile diferans la pou jwenn milisegond yo (ms)
                 const ping = Math.round(endTime - startTime);
 
                 if (data.status === "online") {
@@ -308,19 +457,18 @@
                     statusText.innerText = "ONLINE";
                     statusText.style.color = "#00ff66";
                     
-                    // Afiche ms lan epi chanje koulè l jan sa ye nan Free Fire
                     pingValue.innerText = `${ping} ms`;
                     if (ping < 80) {
-                        pingValue.style.color = "#00ff66"; // Vèt si l rapid (bon ping)
+                        pingValue.style.color = "#00ff66";
                     } else if (ping < 180) {
-                        pingValue.style.color = "#ffbb00"; // Jòn si l kòmanse monte
+                        pingValue.style.color = "#ffbb00";
                     } else {
-                        pingValue.style.color = "var(--neon-pink)"; // Wouj/Roz flash si l wo
+                        pingValue.style.color = "var(--neon-pink)";
                     }
                     
                     logConsole.innerHTML = `
                         <p class="log-text">✔ ${data.msg}</p>
-                        <p class="log-text" style="color: #00f0ff;">⚡ ENGINE: CLOUDFLARE BYPASS 100%</p>
+                        <p class="log-text" style="color: #00f0ff;">⚡ BYPASS STATUS: ACTIVE (${type.toUpperCase()})</p>
                     `;
                 }
             } catch (error) {
@@ -329,7 +477,7 @@
                 statusText.style.color = "#ffbb00";
                 pingValue.innerText = "999+ ms";
                 pingValue.style.color = "var(--neon-pink)";
-                logConsole.innerHTML = `<p class="log-text" style="color: #ffbb00;">[!] Sèvè a ap leve, tann 30s...</p>`;
+                logConsole.innerHTML = `<p class="log-text" style="color: #ffbb00;">[!] Sèvè a ap leve sou Render, tann 30s...</p>`;
             }
         }
     </script>
